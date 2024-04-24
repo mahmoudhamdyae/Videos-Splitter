@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تقسيم الفيديو لحالة الواتساب</string>
+
+    <string name="sure_quit">هل أنت متاكد أنك تريد الخروج ؟</string>
+    <string name="exit">نعم</string>
+    <string name="cancel">قيمنا</string>
+    <string name="other_apps">تطبيقات أخرى</string>
+    <string name="enter_time_in_sec">أدخل الوقت بالثواني</string>
+</resources>

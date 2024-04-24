@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4641" />
+
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="@id/guide1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2880"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.5315" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7313" />
+
+    <TextView
+        android:id="@+id/tv_camera"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/camera_bg"
+        android:fontFamily="@font/myriadpro_semibold"
+        android:gravity="center"
+        android:text="Camera"
+        android:textColor="#0e1e26"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@id/guide2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0984"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.7222" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8875" />
+
+
+    <TextView
+        android:id="@+id/tv_gallery"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/camera_bg"
+        android:fontFamily="@font/myriadpro_semibold"
+        android:gravity="center"
+        android:text="Gallery"
+        android:textColor="#0e1e26"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@id/guide3"
+        app:layout_constraintEnd_toEndOf="@id/tv_camera"
+        app:layout_constraintHeight_percent="0.0984"
+        app:layout_constraintStart_toStartOf="@id/tv_camera" />
+
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_id"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

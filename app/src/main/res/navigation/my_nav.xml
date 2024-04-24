@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/spiltWhatsFragment">
+
+    <fragment
+        android:id="@+id/spiltWhatsFragment"
+        android:name="com.salmahmed.videosplitter.SpiltWhatsFragment"
+        android:label="fragment_spilt_whats"
+        tools:layout="@layout/fragment_spilt_whats" />
+    <fragment
+        android:id="@+id/customSpiltFragment"
+        android:name="com.salmahmed.videosplitter.CustomSpiltFragment"
+        android:label="fragment_custom_spilt"
+        tools:layout="@layout/fragment_custom_spilt" />
+    <fragment
+        android:id="@+id/singleVedioFragment"
+        android:name="com.salmahmed.videosplitter.SingleVedioFragment"
+        android:label="fragment_single_vedio"
+        tools:layout="@layout/fragment_single_vedio" />
+</navigation>

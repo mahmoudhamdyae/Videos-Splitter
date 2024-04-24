@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ed_bottom_bg">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/v1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1080:168"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/video_img"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/rounded_img_bg"
+            android:cropToPadding="true"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@id/v1"
+            app:layout_constraintHeight_percent="0.71428"
+            app:layout_constraintStart_toStartOf="@id/v1"
+            app:layout_constraintTop_toTopOf="@id/v1"
+            app:layout_constraintWidth_percent="0.1667" />
+
+
+        <ImageView
+            android:id="@+id/iv_play"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/play_video"
+            app:layout_constraintBottom_toBottomOf="@id/video_img"
+            app:layout_constraintEnd_toEndOf="@id/video_img"
+            app:layout_constraintHeight_percent="0.4107"
+            app:layout_constraintStart_toStartOf="@id/video_img"
+            app:layout_constraintTop_toTopOf="@id/video_img"
+            app:layout_constraintWidth_percent="0.0638" />
+
+        <TextView
+            android:id="@+id/video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/myriadpro_regular"
+            android:text="Video Part 1"
+            android:textColor="#6d6d6d"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@id/video_img"
+            app:layout_constraintStart_toEndOf="@id/video_img"
+            app:layout_constraintTop_toTopOf="@id/video_img" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/v1"
+            app:layout_constraintEnd_toEndOf="@id/v1"
+            app:layout_constraintHeight_percent="0.42857"
+            app:layout_constraintHorizontal_bias="0.877"
+            app:layout_constraintStart_toEndOf="@+id/video_name"
+            app:layout_constraintTop_toTopOf="@id/v1"
+            app:layout_constraintVertical_bias="0.272"
+            app:layout_constraintWidth_percent="0.1667">
+
+
+            <ImageButton
+                android:id="@+id/tv_save"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/circle_button"
+                android:fontFamily="@font/myriadpro_regular"
+                android:gravity="center"
+                android:src="@drawable/ic_save"
+                android:textColor="#36b754"
+                android:textSize="13sp" />
+
+            <ImageButton
+                android:id="@+id/tv_share"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/circle_button"
+                android:fontFamily="@font/myriadpro_regular"
+                android:gravity="center"
+                android:src="@drawable/ic_share"
+                android:text="Share"
+                android:textColor="#36b754"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

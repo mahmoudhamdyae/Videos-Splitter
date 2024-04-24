@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Video Splitter for WhatsApp</string>
+    <string name="ad_app_id" translatable="false">ca-app-pub-1534351477685466~7683174705</string>
+    <string name="banner_id" translatable="false">ca-app-pub-1534351477685466/6725316254</string>
+    <string name="interstitial_ad_id" translatable="false">ca-app-pub-1534351477685466/8585192833</string>
+
+    <string name="MainFolderName" translatable="false">VEditor</string>
+
+    <string name="sure_quit">Are you sure you want to quit?</string>
+    <string name="exit">OK</string>
+    <string name="cancel">Rate Us</string>
+    <string name="other_apps">Other apps</string>
+    <string name="VideoCutter" translatable="false">VideoCutter</string>
+    <string name="InterstitialAd" translatable="false">ca-app-pub-1534351477685466/8585192833</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="duration">Duration : 0</string>
+    <string name="enter_time_in_sec">Enter time in Sec</string>
+
+</resources>
