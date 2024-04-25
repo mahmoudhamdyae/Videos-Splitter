@@ -75,15 +75,13 @@ class CustomSpiltFragment : Fragment() {
         }
 
 
-        start_btn.setOnClickListener(View.OnClickListener {
-            if(!timeEdt.text.equals("")){
-                time_in_sec=   (timeEdt.text.toString()).toInt()
-                if (Foo.path != null) {
-                    splitVideo(Foo.path,time_in_sec)
-                }
+        start_btn.setOnClickListener {
+            if (!timeEdt.text.equals("")) {
+                time_in_sec = (timeEdt.text.toString()).toInt()
+                splitVideo(Foo.path, time_in_sec)
 
             }
-        })
+        }
 
 
 
@@ -108,11 +106,15 @@ class CustomSpiltFragment : Fragment() {
 
 
     fun splitVideo(path: String , time : Int) {
-        val duration = MediaPlayer.create(activity, Uri.fromFile(File(path))).duration
+        val duration = MediaPlayer.create(activity, Uri.fromFile(File(path)))?.duration ?: 0
         Log.i("Duration", duration.toString())
         val durationInSec: Int = duration / 1000
         if (time > durationInSec) {
-            Toast.makeText(activity, "the time beggar than video duration ",Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, "the time beggar than video duration ", Toast.LENGTH_LONG)
+                .show()
+        } else if (time == 0)  {
+            Toast.makeText(activity, "the time can not equal 0 ", Toast.LENGTH_LONG)
+                .show()
         } else {
             val parts: Int = durationInSec / time
             Log.i("ROOT_PATH", rootDir)

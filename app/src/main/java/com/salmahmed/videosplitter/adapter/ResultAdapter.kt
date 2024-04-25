@@ -84,8 +84,9 @@ class ResultAdapter(private val context: Context, val videoList: List<Video1>) :
                 type = "video/*"
             }
 
-         //   shareIntent.setPackage("com.whatsapp")
+//            shareIntent.setPackage("com.facebook.orca")
             holder.tvShare.context.startActivity(Intent.createChooser(shareIntent, "Share video"))
+//            holder.tvShare.context.startActivity(shareIntent)
 
 
 

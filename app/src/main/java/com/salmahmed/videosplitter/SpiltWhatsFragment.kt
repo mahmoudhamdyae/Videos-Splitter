@@ -78,11 +78,9 @@ class SpiltWhatsFragment : Fragment() {
         }
 
 
-        button.setOnClickListener(View.OnClickListener {
-            if (Foo.path != null) {
-                splitVideo(Foo.path)
-            }
-        })
+        button.setOnClickListener {
+            splitVideo(Foo.path)
+        }
 
         m = Foo.path
         if (m == null) {
@@ -101,7 +99,7 @@ class SpiltWhatsFragment : Fragment() {
 
 
     fun splitVideo(path: String) {
-        val duration = MediaPlayer.create(activity, Uri.fromFile(File(path))).duration
+        val duration = MediaPlayer.create(activity, Uri.fromFile(File(path)))?.duration ?: 0
         Log.i("Duration", duration.toString())
         val durationInSec: Int = duration / 1000
         val parts: Int = durationInSec / 30

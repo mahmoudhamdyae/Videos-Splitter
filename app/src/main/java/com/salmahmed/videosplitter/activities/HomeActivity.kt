@@ -14,9 +14,12 @@ import android.net.Uri
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -31,10 +34,10 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.salmahmed.videosplitter.R
 import com.salmahmed.videosplitter.model.URIPathHelper
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.process_dialog.*
+import kotlinx.android.synthetic.main.activity_home.adView
+import kotlinx.android.synthetic.main.activity_home.tv_camera
+import kotlinx.android.synthetic.main.activity_home.tv_gallery
 import java.io.File
-import java.util.*
 
 
 class HomeActivity : AppCompatActivity() {
@@ -57,11 +60,104 @@ class HomeActivity : AppCompatActivity() {
     //  lateinit var fFmpeg: FFmpeg
     var context = this@HomeActivity
 
+    private fun checkStoragePermissions(): Boolean {
+        return if (SDK_INT >= Build.VERSION_CODES.R) {
+            //Android is 11 (R) or above
+            Environment.isExternalStorageManager()
+        } else {
+            //Below android 11
+            val write =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            val read =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            read == PackageManager.PERMISSION_GRANTED && write == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private val STORAGE_PERMISSION_CODE = 23
+
+    private fun requestForStoragePermissions() {
+        if (checkStoragePermissions()) {
+            return
+        }
+        //Android is 11 (R) or above
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                val intent = Intent()
+                intent.setAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                val uri = Uri.fromParts("package", this.packageName, null)
+                intent.setData(uri)
+                storageActivityResultLauncher.launch(intent)
+            } catch (e: java.lang.Exception) {
+                val intent = Intent()
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                storageActivityResultLauncher.launch(intent)
+            }
+        } else {
+            //Below android 11
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ),
+                STORAGE_PERMISSION_CODE
+            )
+        }
+    }
+
+    private val storageActivityResultLauncher = registerForActivityResult(StartActivityForResult()) {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            //Android is 11 (R) or above
+            if (Environment.isExternalStorageManager()) {
+                //Manage External Storage Permissions Granted
+                Log.d(
+                    "HomeActivity",
+                    "onActivityResult: Manage External Storage Permissions Granted"
+                )
+            } else {
+                Toast.makeText(
+                    this@HomeActivity,
+                    "Storage Permissions Denied",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        } else {
+            //Below android 11
+        }
+    }
+
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<String?>?,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions!!, grantResults)
+//        if (requestCode == STORAGE_PERMISSION_CODE) {
+//            if (grantResults.isNotEmpty()) {
+//                val write = grantResults[0] == PackageManager.PERMISSION_GRANTED
+//                val read = grantResults[1] == PackageManager.PERMISSION_GRANTED
+//                if (read && write) {
+//                    Toast.makeText(
+//                        this@HomeActivity,
+//                        "Storage Permissions Granted",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    Toast.makeText(
+//                        this@HomeActivity,
+//                        "Storage Permissions Denied",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//        }
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         checkPermissions()
+        requestForStoragePermissions()
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
         mInterstitialAd = InterstitialAd(this)
